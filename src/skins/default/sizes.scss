@@ -1,0 +1,38 @@
+$base: 5px;
+
+$paddingSize: (
+  '1px': 1px,
+  'tiny': 2px,
+  '4px': 4px,
+  'normal': 10px,
+
+  'normalV2': 15px,
+  'mediumV2': 20px,
+  'largeV2': 38px,
+
+  'small': $base / 2,
+  'base': $base,
+  'regular': $base * 2,
+  'large': $base * 3,
+  'extra-large': $base * 4,
+);
+@function setSize($key) {
+  @if not map-has-key($paddingSize, $key) {
+    @warn "Key `#{$key}` not found in $paddingSize map.";
+  }
+  @return map-get($paddingSize, $key);
+}
+
+$radiusSize: (
+  'small': 3px,
+  'normal': 4px,
+  'medium': 6px,
+  'heatMap': 12px,
+  'circle': 50%,
+);
+@function setRadius($key) {
+  @if not map-has-key($radiusSize, $key) {
+    @warn "Key `#{$key}` not found in $radiusSize map.";
+  }
+  @return map-get($radiusSize, $key);
+}
