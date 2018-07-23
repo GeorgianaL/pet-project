@@ -1,0 +1,17 @@
+@import '../../skins/index.scss';
+
+.navigation {
+  @include flex(row);
+  list-style-type: none;
+
+  @include element('item') {
+
+    @include modifier('link') {
+      text-decoration: none;
+      font-size: setFontSize('h4');
+      color: setColor('mid-grey');
+      
+      padding: 0 setSize('normal');
+    }
+  }
+}

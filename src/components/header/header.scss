@@ -1,0 +1,16 @@
+@import '../../skins/index.scss';
+
+.header {
+  @include flex(row);
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+
+  @include element('title') {
+    font-size: setFontSize('h3');
+    color: setColor('mid-grey');
+
+    padding: 0 setSize('normal');
+  }
+}
