@@ -1,0 +1,42 @@
+@import '../../skins/index.scss';
+
+.chart-box {
+  background-color: setColor('porcelain');
+  display: flex;
+  justify-content: center;
+
+
+  @include modifier('column') {
+      @include flex(column);
+  }
+
+  @include modifier('row') {
+      @include flex(row);
+  }
+
+  @include modifier('content') {
+    padding: setSize('normal');
+  }
+
+  @include element('main') {
+    height: 100%;
+  }
+
+  @include modifier('title') {
+    height: 20%;
+    font-size: setFontSize('h4');
+    font-weight: setFontWeight('semibold');
+    color: setColor('caribbean-green');
+
+    padding: 0 setSize('normal');
+  }
+
+  @include modifier('description') {
+    height: 80%;
+    padding: 0 setSize('normal');
+
+    p {
+      color: setColor('shuttle-grey');
+    }
+  }
+}

@@ -1,8 +1,11 @@
 import React from 'react';
 
+import ChartBox from '../../components/chart-box';
+
 const D3Projects = () => (
-  <div className='contact'>
+  <div>
     <h1>D3 Projects</h1>
+    <ChartBox type="row" />
   </div>
 );
 
