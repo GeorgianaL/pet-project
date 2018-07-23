@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../../style.scss';
 
-import Header from '../header';
 import Main from '../main';
+import Navigation from '../../components/navigation';
 
 const App = () => (
   <div>
-    <Header />
+    <h1>My portofolio</h1>
+    <Navigation />
     <Main />
   </div>
 );

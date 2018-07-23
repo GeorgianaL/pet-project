@@ -1,0 +1,11 @@
+@import '../../skins/mixins/index.scss';
+
+.navigation {
+  @include flex(row);
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+}
+
+.navigation__link {
+  color: red;
+}
