@@ -7,7 +7,7 @@ const scaleTime = (width, startDate, endDate) => d3.scaleTime()
   .domain([new Date(startDate), new Date(endDate)]);
 
 const scaleLinear = (height, min, max) => d3.scaleLinear()
-  .range([height], 0)
+  .range([height, 0])
   .domain([min, max]);
 
 export const getX = (svg, config, startDate, endDate) => {
@@ -27,18 +27,15 @@ export const getX = (svg, config, startDate, endDate) => {
 
 export const getY = (svg, config) => {
   const height = config.svgHeight - config.marginTop - config.marginBottom;
-
   const min = 0;
-  const max = 200;
+  const max = 40;
 
   const y = scaleLinear(height, min, max);
+
   svg.append('g')
         .attr('class', 'yAxis')
-        .call(d3.axisRight(y)
-          .ticks(3));
+        .call(d3.axisRight(y));
   d3.selectAll('.yAxis > g')
     .attr('class', 'tick yAxis__tick');
-  d3.selectAll('.yAxis > g > text')
-    .attr('transform', 'translate(0, -5)');
   return y;
 };

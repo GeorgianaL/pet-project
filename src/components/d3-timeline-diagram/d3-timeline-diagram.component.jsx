@@ -20,6 +20,10 @@ const getMiddleMonthDay = (month) => moment().day(15).year('1990').format('X');
 const formatData = (data, label) => Object.keys(data)
   .map(value => ({ 'date': getMiddleMonthDay(value), 'value': data[value][label.toUpperCase()].length }));
 
+const deleteSvg = () => {
+  d3.selectAll('.timeline_diagram > g').remove();
+};
+
 export class TimelineDiagram extends PureComponent {
   constructor(props) {
     super(props);
@@ -27,13 +31,17 @@ export class TimelineDiagram extends PureComponent {
     this.svgNode = null;
     this.renderD3 = this.renderD3.bind(this);
     this.getSvgNode = this.getSvgNode.bind(this);
+    this.drawLine = this.drawLine.bind(this);
+    this.drawPoints = this.drawPoints.bind(this);
   }
 
   componentDidMount() {
+    deleteSvg();
     this.renderD3();
   }
 
   componentDidUpdate() {
+    deleteSvg();
     this.renderD3();
   }
 
@@ -100,7 +108,29 @@ export class TimelineDiagram extends PureComponent {
         .attr('class', 'area female')
         .attr('d', d3Area)
         .style('fill', 'url(#female)');
+
+      this.drawPoints(svg, lineData, 'male');
+      this.drawPoints(svg, secondLineData, 'female');
   }
+
+  /**
+* For each data object, append a d3 circle on the graph, according to
+* it's x and y coordinates
+* @param {Object} svg
+* @param {Array} data
+* @param {String} label
+*/
+ drawPoints(svg, data, label) {
+   const points = svg.append('g')
+     .attr('class', `points ${label}_points`);
+   points.selectAll('.pathPoint')
+     .data(data)
+     .enter().append('circle')
+     .attr('class', `pathPoint ${label}`)
+     .attr('r', 5)
+     .attr('cx', d => d.x)
+     .attr('cy', d => d.y);
+ }
 
   renderD3() {
     const { data, config } = this.props;
@@ -108,8 +138,7 @@ export class TimelineDiagram extends PureComponent {
     const startDate = moment('01/01/1990', 'MM/DD/YYYY');
     const endDate = moment('12/31/1990', 'MM/DD/YYYY');
 
-    const height = config.svgHeight - config.marginTop - config.marginBottom;
-
+    console.log(data);
     const svg = this.getSvgNode();
     const x = getX(svg, config, startDate, endDate);
     const y = getY(svg, config);

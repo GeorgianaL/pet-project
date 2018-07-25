@@ -14,7 +14,7 @@ class ChartBoxContainer extends Component {
         'svgWidth': parseInt(window.innerWidth, 10),
         'svgHeight': 250,
         'marginLeft': 10,
-        'marginTop': 5,
+        'marginTop': 20,
         'marginBottom': 5,
       },
     };

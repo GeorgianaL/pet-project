@@ -13,3 +13,50 @@
     fill: setColor('yellow');
     background: setColor('yellow');
 }
+
+.timeline_diagram_container {
+    position: relative;
+}
+
+.xAxis {
+    path {
+        stroke: transparent;
+    }
+    text {
+        fill: setColor('light-grey');
+    }
+    .tick {
+        line {
+            stroke: transparent;
+        }
+    }
+}
+
+.yAxis {
+    text {
+        fill: setColor('light-grey');
+        font-weight: setFontWeight('normal');
+
+        &.precision {
+            fill: setColor('highlighted-purple');
+        }
+
+        &.topLabel {
+            fill: setColor('bright-green');
+        }
+    }
+
+    path {
+        stroke-dasharray: 3, 3;
+        stroke: setColor('light-grey');
+    }
+}
+
+g {
+    .line {
+        fill: none;
+    }
+    .area {
+        fill-opacity: 0.2;
+    }
+}
