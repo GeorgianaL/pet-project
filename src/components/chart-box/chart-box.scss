@@ -12,9 +12,17 @@
 
   @include modifier('row') {
       @include flex(row);
+
+      .chart-box__content {
+        width: 70%;
+      }
+
+      .chart-box__main {
+        width: 30%;
+      }
   }
 
-  @include modifier('content') {
+  @include element('content') {
     padding: setSize('normal');
   }
 

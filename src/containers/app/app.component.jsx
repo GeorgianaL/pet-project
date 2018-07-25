@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../main-style-file.scss';
 
 import Main from '../main';

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getChart, getChartDescription } from '../../lib/charts';
 import './chart-box.scss';
 
 /**
@@ -11,16 +12,16 @@ import './chart-box.scss';
 */
 
 const ChartBox = props => (
-  <div className={`chart-box chart-box--${props.type}`}>
-    <div className="chart-box--content">
-      <svg width="700" height="200"></svg>
+  <div className={`chart-box chart-box--${props.boxType}`}>
+    <div className="chart-box__content">
+      {getChart(props)}
     </div>
     <div className="chart-box__main">
       <div className="chart-box--title">
-        <p>Chart name</p>
+        <p>{props.chart}</p>
       </div>
       <div className="chart-box--description">
-        <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
+        {getChartDescription(props.chart)}
       </div>
     </div>
   </div>
