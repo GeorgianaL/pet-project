@@ -8,7 +8,7 @@ const ROW = 'row';
 
 const basicConfig = {
   'svgHeight': 250,
-  'marginLeft': 10,
+  'marginLeft': 20,
   'marginTop': 20,
   'marginBottom': 5,
 };

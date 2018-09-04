@@ -31,7 +31,7 @@ export const getUsersByGenderAndBirth = createSelector(
     return months.reduce((acc, currentMonth, monthIdx) => [
       ...acc,
       {
-        [DATE]: moment().date(15).month(monthIdx + 1).year(1990),
+        [DATE]: moment().date(15).month(currentMonth).year(1990),
         [MALE.toLowerCase()]: males.filter(user=> moment(user.birth.date, 'MM/DD/YYYY').month() === monthIdx + 1).length,
         [FEMALE.toLowerCase()]: females.filter(user=> moment(user.birth.date, 'MM/DD/YYYY').month() === monthIdx + 1).length,
       }

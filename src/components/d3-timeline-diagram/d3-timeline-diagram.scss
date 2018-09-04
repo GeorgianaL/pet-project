@@ -1,19 +1,5 @@
 @import '../../skins/index.scss';
 
-// .female {
-//   color: setColor('red');
-//   stroke: setColor('red');
-//   fill: setColor('red');
-//   background: setColor('red');
-// }
-
-// .male {
-//   color: setColor('yellow');
-//   stroke: setColor('yellow');
-//   fill: setColor('yellow');
-//   background: setColor('yellow');
-// }
-
 .d3-timeline-graph {
   position: relative;
 
@@ -54,6 +40,13 @@
   &__lines {
     path {
       fill: none;
+    }
+  }
+
+  &__dashedLineGroup {
+    line {
+      stroke-dasharray: 3, 3;
+      stroke: setColor('light-grey');
     }
   }
 }
