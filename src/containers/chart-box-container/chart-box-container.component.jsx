@@ -6,16 +6,19 @@ import ChartBox from '../../components/chart-box';
 const COLUMN = 'column';
 const ROW = 'row';
 
+const basicConfig = {
+  'svgHeight': 250,
+  'marginLeft': 10,
+  'marginTop': 20,
+  'marginBottom': 5,
+};
+
 class ChartBoxContainer extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
       'config': {
         'svgWidth': parseInt(window.innerWidth, 10),
-        'svgHeight': 250,
-        'marginLeft': 10,
-        'marginTop': 20,
-        'marginBottom': 5,
       },
     };
 
@@ -59,7 +62,10 @@ componentWillMount() {
       return (
         <ChartBox
           {...this.props}
-          config={this.state.config}
+          config={{
+            ...basicConfig,
+            ...this.state.config
+          }}
         />
       );
     }

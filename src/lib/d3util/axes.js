@@ -10,12 +10,11 @@ const scaleLinear = (height, min, max) => d3.scaleLinear()
   .range([height, 0])
   .domain([min, max]);
 
-export const getX = (svg, config, startDate, endDate) => {
+export const getX = (svg, className, config, startDate, endDate) => {
   const width = config.svgWidth - config.marginLeft;
 
   const x = scaleTime(width, startDate, endDate);
-  svg.append('g')
-    .attr('class', 'xAxis')
+  svg.select(`.${className}__xAxis`)
     .attr('transform', `translate(${config.marginLeft}, 0)`)
     .call(d3.axisTop(x)
       .ticks(7)
@@ -25,16 +24,15 @@ export const getX = (svg, config, startDate, endDate) => {
   return x;
 };
 
-export const getY = (svg, config) => {
+export const getY = (svg, className, config) => {
   const height = config.svgHeight - config.marginTop - config.marginBottom;
   const min = 0;
   const max = 40;
 
   const y = scaleLinear(height, min, max);
 
-  svg.append('g')
-        .attr('class', 'yAxis')
-        .call(d3.axisRight(y));
+  svg.select(`.${className}__yAxis`)
+    .call(d3.axisRight(y));
   d3.selectAll('.yAxis > g')
     .attr('class', 'tick yAxis__tick');
   return y;

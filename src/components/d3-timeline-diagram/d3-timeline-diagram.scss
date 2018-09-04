@@ -1,56 +1,63 @@
 @import '../../skins/index.scss';
 
-.female {
-    color: setColor('red');
-    stroke: setColor('red');
-    fill: setColor('red');
-    background: setColor('red');
-}
+// .female {
+//   color: setColor('red');
+//   stroke: setColor('red');
+//   fill: setColor('red');
+//   background: setColor('red');
+// }
 
-.male {
-    color: setColor('yellow');
-    stroke: setColor('yellow');
-    fill: setColor('yellow');
-    background: setColor('yellow');
-}
+// .male {
+//   color: setColor('yellow');
+//   stroke: setColor('yellow');
+//   fill: setColor('yellow');
+//   background: setColor('yellow');
+// }
 
-.timeline_diagram_container {
-    position: relative;
-}
+.d3-timeline-graph {
+  position: relative;
 
-.xAxis {
+  &__xAxis {
     path {
-        stroke: transparent;
+      stroke: transparent;
     }
     text {
-        fill: setColor('light-grey');
+      fill: setColor('light-grey');
     }
     .tick {
-        line {
-            stroke: transparent;
-        }
+      line {
+          stroke: transparent;
+      }
     }
-}
+  }
 
-.yAxis {
+  &__yAxis {
     text {
-        fill: setColor('light-grey');
-        font-weight: setFontWeight('normal');
+      fill: setColor('light-grey');
+      font-weight: setFontWeight('normal');
 
-        &.precision {
-            fill: setColor('highlighted-purple');
-        }
+      &.precision {
+        fill: setColor('highlighted-purple');
+      }
 
-        &.topLabel {
-            fill: setColor('bright-green');
-        }
+      &.topLabel {
+        fill: setColor('bright-green');
+      }
     }
-
-    path {
+  
+      path {
         stroke-dasharray: 3, 3;
         stroke: setColor('light-grey');
+      }
+  }
+
+  &__lines {
+    path {
+      fill: none;
     }
+  }
 }
+
 
 g {
     .line {
