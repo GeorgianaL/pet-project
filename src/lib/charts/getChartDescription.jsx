@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   TIMELINE,
-  CHORD,
+  WORLDMAP,
 } from './chartTypes.js';
 
 const getChartDescription = (type, config) => {
@@ -14,6 +14,12 @@ const getChartDescription = (type, config) => {
         </p>
       );
       break;
+    case WORLDMAP:
+      return (
+        <p>
+          You can use a Map Chart to compare values and show categories across geographical regions. Use it when you have geographical regions in your data, like countries/regions, states, counties or postal codes.
+        </p>
+      );
     default:
       return (
         <p>No chart description.</p>

@@ -1,0 +1,21 @@
+@import '../../skins/index.scss';
+
+.d3-world-map {
+    position: relative;
+
+    @include flex($direction: row);
+    justify-content: center;
+
+    path {
+        fill: setColor('white');
+        stroke: setColor('mid-grey');
+        stroke-width: 0.3;
+        opacity: 0.8;
+      }
+
+    .connection {
+        stroke: setColor('orange');
+        stroke-width: 1px;
+        fill: none;
+    }
+}

@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { MALE, FEMALE, DATE } from './constants';
 import { months, getUsersBy } from '../../lib';
 
-import { getUsers, getMaleUsers, getFemaleUsers } from './users.selectors';
+import { getUsers } from './users.selectors';
 
 /*
   Return data like:

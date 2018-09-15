@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import * as moment from 'moment';
 
-import { MALE, FEMALE, DATE } from '../../model/selectors/constants';
+import { DATE } from '../../model/selectors/constants';
 import { getX, getY } from '../../lib/d3util';
 
 import './d3-timeline-diagram.scss';
@@ -129,7 +129,7 @@ export class TimelineDiagram extends PureComponent {
   const pointsGroup = svg.select(`.${className}__points`);
   const pointsGroupData = pointsGroup.selectAll(`.point.${key}`)
      .data(data);
-  
+
   pointsGroupData.enter()
     .append('circle')
     .attr('class', `point ${key}`)
@@ -169,7 +169,6 @@ export class TimelineDiagram extends PureComponent {
 
   if (defaultTicksPosition.length > 1) {
     defaultTicksPosition.forEach((tick, i) => {
-      console.log(defaultTicksPosition[i], defaultTicksPosition[i + 1], defaultTicksPosition[i] && defaultTicksPosition[i + 1])
       if (defaultTicksPosition[i] >= 0 && defaultTicksPosition[i + 1]) {
         delimiters = [
           ...delimiters,

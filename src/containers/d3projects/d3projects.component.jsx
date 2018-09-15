@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 import ChartBoxContainer from '../chart-box-container';
 import { getUsersByGenderAndBirth } from '../../model/selectors/genders.selectors';
-import { TIMELINE } from '../../lib/charts/chartTypes';
+import { getUsersLocation } from '../../model/selectors/location.selectors';
+
+import { TIMELINE, WORLDMAP } from '../../lib/charts/chartTypes';
 
 class D3Projects extends Component {
   constructor(props) {
@@ -19,6 +21,11 @@ class D3Projects extends Component {
           chart={TIMELINE}
           data={this.props.timelineData}
         />
+        <ChartBoxContainer
+          boxType="row"
+          chart={WORLDMAP}
+          data={this.props.worldMapData}
+        />
       </div>
     );
   }
@@ -26,6 +33,7 @@ class D3Projects extends Component {
 
 const mapStateToProps = state => ({
   'timelineData': getUsersByGenderAndBirth(state),
+  'worldMapData': getUsersLocation(state),
 });
 
 
