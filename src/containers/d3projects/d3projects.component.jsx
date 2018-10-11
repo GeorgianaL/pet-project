@@ -14,7 +14,7 @@ class D3Projects extends Component {
   }
 
   render() {
-    console.log(this.props.chordData);
+    // console.log(this.props.chordData);
     return (
       <div>
         <h1>D3 Projects</h1>

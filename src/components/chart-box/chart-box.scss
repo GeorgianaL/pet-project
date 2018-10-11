@@ -24,6 +24,7 @@
 
   @include element('content') {
     padding: 10px 10px 0px 10px;
+    @include flex(column);
   }
 
   @include element('main') {

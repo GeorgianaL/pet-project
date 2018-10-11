@@ -1,0 +1,12 @@
+@import '../../skins/index.scss';
+
+.legend {
+  @include element('list') {
+    @include flex(row);
+  }
+  @include element('item') {
+    @include flex(row);
+    align-items: center;
+    padding: 10px;
+  }
+}
