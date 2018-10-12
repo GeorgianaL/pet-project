@@ -6,7 +6,7 @@ import { getUsersByGenderAndBirth } from '../../model/selectors/genders.selector
 import { getUsersLocation } from '../../model/selectors/location.selectors';
 import { getUsersByCreditCardType } from '../../model/selectors/credit-card-type.selectors';
 
-import { TIMELINE, WORLDMAP } from '../../lib/charts/chartTypes';
+import { TIMELINE, WORLDMAP, CHORD } from '../../lib/charts/chartTypes';
 
 class D3Projects extends Component {
   constructor(props) {
@@ -14,7 +14,6 @@ class D3Projects extends Component {
   }
 
   render() {
-    // console.log(this.props.chordData);
     return (
       <div>
         <h1>D3 Projects</h1>
@@ -27,6 +26,11 @@ class D3Projects extends Component {
           boxType="row"
           chart={WORLDMAP}
           data={this.props.worldMapData}
+        />
+        <ChartBoxContainer
+          boxType="row"
+          chart={CHORD}
+          data={{ 'entities': this.props.chordData }}
         />
       </div>
     );

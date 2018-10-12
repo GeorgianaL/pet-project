@@ -3,10 +3,12 @@ import React from 'react';
 import {
   TIMELINE,
   WORLDMAP,
+  CHORD,
 } from './chartTypes.js';
 
 import TimelineDiagram from '../../components/d3-timeline-diagram';
 import WorldMap from '../../components/d3-world-map';
+import Chord from '../../components/d3-chord';
 
 const getChart = (props) => {
   return (
@@ -15,10 +17,10 @@ const getChart = (props) => {
         switch (props.chart) {
           case TIMELINE:
             return <TimelineDiagram {...props} />;
-            break;
           case WORLDMAP:
             return <WorldMap {...props} />;
-            break;
+          case CHORD:
+            return <Chord {...props} />;
           default:
             return <p>No chart</p>;
           }

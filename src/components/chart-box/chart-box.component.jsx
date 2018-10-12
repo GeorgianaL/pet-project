@@ -7,7 +7,7 @@ import './chart-box.scss';
 
 /**
   ChartBox - stateless component which renders a box containing
-  the title, the svg and the description for any Chart
+  the title, the svg, the chart legend and the description for any Chart
   props {
     type: 'column'/ 'row'
   }
@@ -18,7 +18,7 @@ const ChartBox = props => (
     <div className="chart-box__content">
       {getChart(props)}
       <div className="chart-box--legend">
-        <Legend data={getChartLegend(props.chart)} chart={props.chart} />
+        <Legend data={getChartLegend(props.chart, props.data)} chart={props.chart} />
       </div>
     </div>
     <div className="chart-box__main">

@@ -8,5 +8,16 @@
     @include flex(row);
     align-items: center;
     padding: 10px;
+    width: 100%;
+
+    @include modifier('circle') {
+      width: 20px;
+      height: 20px;
+    }
+
+    @include modifier('img') {
+      width: 35px;
+      height: 35px;
+    }
   }
 }

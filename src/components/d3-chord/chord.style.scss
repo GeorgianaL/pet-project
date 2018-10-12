@@ -1,25 +1,26 @@
-// @import 'xbem';
-// @import 'theme';
-//
-// @include block('arcSlice') {
-//     cursor: pointer;
-//     fill: setColor('tundora');
-//
-//     @include state('suspiciousArc') {
-//         stroke: setColor('yellow');
-//         stroke-width: 2px;
-//     }
-//
-//     @include state('maliciousArc') {
-//         stroke: setColor('red');
-//         stroke-width: 2px;
-//     }
-//
-//     @include state('unknownArc') {
-//         stroke: setColor('light-grey');
-//         stroke-width: 2px;
-//     }
-// }
+@import '../../skins/index.scss';
+
+
+.arcSlice {
+    cursor: pointer;
+    fill: setColor('caribbean-green');
+    stroke: setColor('white');
+
+    // @include state('suspiciousArc') {
+    //     stroke: setColor('yellow');
+    //     stroke-width: 2px;
+    // }
+    //
+    // @include state('maliciousArc') {
+    //     stroke: setColor('red');
+    //     stroke-width: 2px;
+    // }
+    //
+    // @include state('unknownArc') {
+    //     stroke: setColor('light-grey');
+    //     stroke-width: 2px;
+    // }
+}
 //
 // @include block('flow') {
 //     fill: none;

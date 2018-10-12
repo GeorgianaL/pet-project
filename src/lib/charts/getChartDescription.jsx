@@ -3,6 +3,7 @@ import React from 'react';
 import {
   TIMELINE,
   WORLDMAP,
+  CHORD,
 } from './chartTypes.js';
 
 const getChartDescription = (type, config) => {
@@ -18,6 +19,13 @@ const getChartDescription = (type, config) => {
       return (
         <p>
           You can use a Map Chart to compare values and show categories across geographical regions. Use it when you have geographical regions in your data, like countries/regions, states, counties or postal codes.
+        </p>
+      );
+    case CHORD:
+      return (
+        <p>
+          Pie and doughnut/chord charts are probably the most commonly used charts. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
+          They are excellent at showing the relational proportions between data.
         </p>
       );
     default:

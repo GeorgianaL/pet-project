@@ -1,9 +1,13 @@
 import {
   TIMELINE,
   WORLDMAP,
+  CHORD,
 } from './chartTypes.js';
 
-const getChartLegend = (type) => {
+import { creditCardIcon } from './';
+import { capitalize } from '../';
+
+const getChartLegend = (type, data) => {
   switch (type) {
     case TIMELINE:
     case WORLDMAP:
@@ -16,7 +20,15 @@ const getChartLegend = (type) => {
           color: '#54E0C1',
           label: 'Male',
         }
-      ]
+      ];
+    case CHORD:
+      const total = data.entities.reduce((acc, type) => acc + type.male + type.female, 0);
+      console.log(total);
+      return data.entities.reduce((acc, type) => [...acc, {
+          'category': type.credit_card_type,
+          'icon': creditCardIcon[type.credit_card_type],
+          'label': `${(type.male * 100) / total}% Male ${(type.female * 100) / total}% Female`,
+        }], []);
     default:
       return [];
   }

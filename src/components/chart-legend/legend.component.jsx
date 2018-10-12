@@ -5,7 +5,7 @@ import './legend.scss';
 
 const Legend = (props) => (
   <div className="legend">
-    <div className="legend__list">
+    <div className={`legend__list legend__list--${props.chart}`}>
       {
         props.data.map((item, index) => <div key={`${props.chart}-${index}`}><LegendItem data={item} /></div>)
       }
