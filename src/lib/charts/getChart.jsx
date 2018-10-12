@@ -4,11 +4,13 @@ import {
   TIMELINE,
   WORLDMAP,
   CHORD,
+  PROGRESS,
 } from './chartTypes.js';
 
 import TimelineDiagram from '../../components/d3-timeline-diagram';
 import WorldMap from '../../components/d3-world-map';
 import Chord from '../../components/d3-chord';
+import ProgressChartList from '../../components/d3-progress-donut-chart';
 
 const getChart = (props) => {
   return (
@@ -21,6 +23,9 @@ const getChart = (props) => {
             return <WorldMap {...props} />;
           case CHORD:
             return <Chord {...props} />;
+          case PROGRESS:
+          console.log(props);
+            return <ProgressChartList {...props} />
           default:
             return <p>No chart</p>;
           }

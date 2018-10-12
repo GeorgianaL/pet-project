@@ -51,3 +51,14 @@ export const getUsersByCreditCardType = createSelector(
     return types;
   }
 );
+
+export const getCreditCardTypesPercentages = createSelector(
+  [getUsersByCreditCardType],
+  (types) => {
+    const total = types.reduce((acc, type) => acc + type.male + type.female, 0);
+    return types.reduce((acc, creditCardType) => [...acc, {
+      'credit_card_type': creditCardType.credit_card_type,
+      'percent': ((creditCardType.male + creditCardType.female) * 100) / total,
+    }], []);
+  }
+);

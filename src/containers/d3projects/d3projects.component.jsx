@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import ChartBoxContainer from '../chart-box-container';
 import { getUsersByGenderAndBirth } from '../../model/selectors/genders.selectors';
 import { getUsersLocation } from '../../model/selectors/location.selectors';
-import { getUsersByCreditCardType } from '../../model/selectors/credit-card-type.selectors';
+import { getUsersByCreditCardType, getCreditCardTypesPercentages } from '../../model/selectors/credit-card-type.selectors';
 
-import { TIMELINE, WORLDMAP, CHORD } from '../../lib/charts/chartTypes';
+import { TIMELINE, WORLDMAP, CHORD, PROGRESS } from '../../lib/charts/chartTypes';
 
 class D3Projects extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class D3Projects extends Component {
   }
 
   render() {
+    console.log(this.props.chordData);
     return (
       <div>
         <h1>D3 Projects</h1>
@@ -32,6 +33,11 @@ class D3Projects extends Component {
           chart={CHORD}
           data={{ 'entities': this.props.chordData }}
         />
+        <ChartBoxContainer
+          boxType="row"
+          chart={PROGRESS}
+          data={this.props.progressData}
+        />
       </div>
     );
   }
@@ -41,6 +47,7 @@ const mapStateToProps = state => ({
   'timelineData': getUsersByGenderAndBirth(state),
   'worldMapData': getUsersLocation(state),
   'chordData': getUsersByCreditCardType(state),
+  'progressData': getCreditCardTypesPercentages(state),
 });
 
 

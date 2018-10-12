@@ -23,7 +23,6 @@ const getChartLegend = (type, data) => {
       ];
     case CHORD:
       const total = data.entities.reduce((acc, type) => acc + type.male + type.female, 0);
-      console.log(total);
       return data.entities.reduce((acc, type) => [...acc, {
           'category': type.credit_card_type,
           'icon': creditCardIcon[type.credit_card_type],

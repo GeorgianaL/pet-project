@@ -4,6 +4,7 @@ import {
   TIMELINE,
   WORLDMAP,
   CHORD,
+  PROGRESS,
 } from './chartTypes.js';
 
 const getChartDescription = (type, config) => {
@@ -26,6 +27,13 @@ const getChartDescription = (type, config) => {
         <p>
           Pie and doughnut/chord charts are probably the most commonly used charts. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
           They are excellent at showing the relational proportions between data.
+        </p>
+      );
+    case PROGRESS:
+      return (
+        <p>
+          A Doughnut chart is a very popular way to measure progress towards a goal or target. They are simple to understand, appealing to the eye and familiar to users.
+          You see Doughnut charts being used to show progress in the news, in business reports and even when your computer is loading or refreshing.
         </p>
       );
     default:

@@ -1,13 +1,19 @@
-@import 'xbem';
-@import 'theme';
+@import '../../skins/index.scss';
 
-@include block('d3-progress-chart') {
+.progresschart {
+  @include element('list') {
+    @include flex(row);
+  }
+}
+
+.d3-progress-chart {
   position: relative;
+  padding: 0px 10px;
 
   @include element('text') {
     > div {
       align-items: center;
-      color: setColor('white');
+      color: setColor('seance');
       display: flex;
       flex-direction: column;
       font-size: setFontSizeNew('h3','big');
@@ -18,8 +24,8 @@
 
     user-select: none;
   }
-  .popper-wrap {
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  // .popper-wrap {
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  // }
 }
