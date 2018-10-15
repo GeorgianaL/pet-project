@@ -1,0 +1,32 @@
+@import '../../skins/index.scss';
+
+.home {
+  @include element('title') {
+    @include flex(column);
+    align-items: center;
+    justify-content: center;
+    color: setColor('ebony-clay');
+    padding-bottom: 20px;
+
+    @include modifier('photo') {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+    }
+  }
+  @include element('content') {
+    padding-top: 20px;
+    @include flex(column);
+    justify-content: center;
+
+    @include modifier('photo') {
+      @include flex(column);
+      justify-content: center;
+    }
+
+    img {
+      margin: auto;
+      max-width: 800px;
+    }
+  }
+}

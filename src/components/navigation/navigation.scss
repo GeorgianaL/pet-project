@@ -10,8 +10,12 @@
       text-decoration: none;
       font-size: setFontSize('h4');
       color: setColor('mid-grey');
-      
+
       padding: 0 setSize('normal');
+
+      &:hover {
+        color: setColor('ebony-clay');
+      }
     }
   }
 }
