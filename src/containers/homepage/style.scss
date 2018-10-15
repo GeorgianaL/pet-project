@@ -1,0 +1,86 @@
+@import '../../skins/index.scss';
+
+.home {
+  @include element('top-info') {
+      @include flex(row);
+      justify-content: center;
+  }
+  @include element('title') {
+    @include flex(column);
+    padding: 20px 30px;
+    background-color: setColor('white');
+    color: setColor('ebony-clay');
+    font-size: setFontSize('h2');
+    -webkit-box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
+    -moz-box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
+    box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
+
+    h1 {
+      margin: 0;
+    }
+
+    @include modifier('main') {
+      h3 {
+        padding: 0px 3px;
+      }
+    }
+
+    @include modifier('name') {
+      color: setColor('seance');
+    }
+  }
+
+  @include element('avatar') {
+    padding: 20px 30px;
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+    }
+  }
+  @include element('content') {
+    @include flex(row);
+    padding: 20px 30px;
+    justify-content: center;
+    @include modifier('photo') {
+      @include flex(column);
+      justify-content: center;
+    }
+
+    img {
+      margin: auto;
+      max-width: 800px;
+    }
+  }
+}
+
+@media only screen and (min-width: 691px) {
+  .home {
+    @include modifier('main') {
+      @include flex(row);
+    }
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .home {
+    font-size: setFontSize('h1');
+    @include element('top-info') {
+      @include flex(column);
+    }
+    @include element('avatar') {
+      @include flex(row);
+      justify-content: center;
+    }
+  }
+
+  .brackets {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .development {
+    width: 300px;
+  }
+}

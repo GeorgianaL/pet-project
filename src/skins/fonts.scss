@@ -10,15 +10,15 @@ $font-weights: (
     }
     @return map-get($font-weights, $key);
   }
-  
+
   $font-sizes: (
-    "h1": 2rem,
-    "h2": 1.6rem,
-    "h3": 1.4rem,
-    "h4": 1.2rem,
-    "h5": 1rem,
-    "h6": 0.9rem,
-    "small": 0.7rem,
+    "h1": 1.8em,
+    "h2": 1.6em,
+    "h3": 1.4em,
+    "h4": 1.2em,
+    "h5": 1em,
+    "h6": 0.9em,
+    "small": 0.7em,
   );
   @function setFontSize($key) {
     @if not map-has-key($font-sizes, $key) {
@@ -26,7 +26,7 @@ $font-weights: (
     }
     @return map-get($font-sizes, $key);
   }
-  
+
   @mixin typography($color: null, $size: "h4", $weight: "normal") {
     @if ($color) {
       color: $color;
@@ -34,46 +34,45 @@ $font-weights: (
     font-size: setFontSize($size);
     font-weight: setFontWeight($weight);
   }
-  
+
   @mixin truncate($size: 120px) {
     width: $size;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+
   @mixin H1($col) {
     @include typography($color: $col, $size: "h1", $weight: "normal");
     line-height: 1.13;
     letter-spacing: -0.4px;
   }
-  
+
   @mixin H2($col) {
     @include typography($color: $col, $size: "h2", $weight: "normal");
     line-height: 1.5;
     letter-spacing: -0.4px;
   }
-  
+
   @mixin H3($col) {
     @include typography($color: $col, $size: "h3", $weight: "normal");
     line-height: 1.8;
     letter-spacing: -0.2px;
   }
-  
+
   @mixin H4($col) {
     @include typography($color: $col, $size: "h4", $weight: "normal");
     line-height: 2;
     letter-spacing: -0.3px;
   }
-  
+
   @mixin H5($col) {
     @include typography($color: $col, $size: "h5", $weight: "normal");
     line-height: 1.75;
     letter-spacing: -0.2px;
   }
-  
+
   @mixin small($col) {
     @include typography($color: $col, $size: "small", $weight: "semibold");
     letter-spacing: -0.3px;
   }
-  
