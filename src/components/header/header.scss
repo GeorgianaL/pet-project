@@ -4,11 +4,6 @@
   @include flex(row);
   align-items: center;
   justify-content: flex-end;
-
-  @include element('title') {
-    font-size: setFontSize('h3');
-    color: setColor('mid-grey');
-
-    padding: 0 setSize('normal');
-  }
+  height: 90px;
+  background-color: setColor('ebony-clay');
 }

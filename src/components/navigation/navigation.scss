@@ -8,13 +8,25 @@
 
     @include modifier('link') {
       text-decoration: none;
-      font-size: setFontSize('h4');
-      color: setColor('mid-grey');
+      font-weight: 500;
+      font-size: setFontSize('h1');
+      color: setColor('white');
 
       padding: 0 setSize('normal');
 
       &:hover {
-        color: setColor('ebony-clay');
+        color: setColor('porcelain');
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .navigation {
+    @include element('item') {
+      @include modifier('link') {
+        font-size: 2.3em;
       }
     }
   }

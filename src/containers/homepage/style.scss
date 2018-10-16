@@ -2,31 +2,31 @@
 
 .home {
   @include element('top-info') {
-      @include flex(row);
-      justify-content: center;
+    @include flex(row);
+    padding: 60px 20px;
+    justify-content: center;
+    background-color: setColor('white');
   }
   @include element('title') {
     @include flex(column);
     padding: 20px 30px;
-    background-color: setColor('white');
+    border-left: 4px solid setColor('ebony-clay');
     color: setColor('ebony-clay');
-    font-size: setFontSize('h2');
-    -webkit-box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
-    -moz-box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
-    box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
-
-    h1 {
-      margin: 0;
-    }
+    font-size: 3em;
 
     @include modifier('main') {
-      h3 {
+      p {
         padding: 0px 3px;
+        font-weight: 600;
+          margin: 0;
       }
     }
-
     @include modifier('name') {
       color: setColor('seance');
+    }
+    @include modifier('info') {
+      font-size: 0.6em;
+      margin: 20px 0px;
     }
   }
 
@@ -36,12 +36,16 @@
       width: 200px;
       height: 200px;
       border-radius: 20px;
+      -webkit-box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
+      -moz-box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
+      box-shadow: -8px 11px 26px 3px rgba(219,219,219,1);
     }
   }
   @include element('content') {
     @include flex(row);
-    padding: 20px 30px;
+    padding: 60px 30px;
     justify-content: center;
+    background-color: setColor('porcelain');
     @include modifier('photo') {
       @include flex(column);
       justify-content: center;
@@ -52,16 +56,53 @@
       max-width: 800px;
     }
   }
-}
+  @include element('skills') {
+    padding: 20px 30px;
+    @include modifier('content') {
+      border-left: 4px solid setColor('ebony-clay');
+    }
 
-@media only screen and (min-width: 691px) {
-  .home {
-    @include modifier('main') {
-      @include flex(row);
+    .skill {
+      @include element('item') {
+        @include flex(row);
+        padding: 20px 30px;
+        color: setColor('ebony-clay');
+
+        @include modifier('icon') {
+          border-radius: 50%;
+          background-color: setColor('aquamarine-blue');
+          width: 64px;
+          height: 64px;
+        }
+        @include modifier('text') {
+          @include flex(column);
+          padding: 10px 20px;
+        }
+        @include modifier('title') {
+          font-size: 2.5em;
+          font-weight: 600;
+          margin: 0;
+        }
+        @include modifier('description') {
+          font-size: 1.9em;
+        }
+      }
     }
   }
 }
 
+// screen bigger than on a mobile
+@media only screen and (min-width: 691px) {
+  .home {
+    @include element('title') {
+      @include modifier('main') {
+        @include flex(row);
+      }
+    }
+  }
+}
+
+// mobile
 @media only screen and (max-width: 690px) {
   .home {
     font-size: setFontSize('h1');
@@ -70,7 +111,34 @@
     }
     @include element('avatar') {
       @include flex(row);
+      padding: 80px 30px;
       justify-content: center;
+
+      img {
+        width: 300px;
+        height: 300px;
+      }
+    }
+    @include element('content') {
+      @include modifier('photo') {
+        width: 400px;
+      }
+    }
+    @include element('skills') {
+      padding: 20px 10px;
+      @include modifier('content') {
+        border-left: 0px;
+
+        .skill {
+          @include element('item') {
+            padding: 20px 10px;
+
+            @include modifier('title') {
+              font-size: 1.8em;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -79,6 +147,7 @@
   }
 }
 
+// really small screen
 @media only screen and (max-width: 430px) {
   .development {
     width: 300px;
