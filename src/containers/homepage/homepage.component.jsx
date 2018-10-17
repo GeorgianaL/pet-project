@@ -2,6 +2,8 @@ import React from 'react';
 
 import { capitalize } from '../../lib';
 
+import Expertise from '../expertise';
+
 import avatar from '../../../public/avatar.jpg';
 import development from '../../../public/dev.png';
 import breakOpen from '../../../public/break-open.png';
@@ -56,8 +58,8 @@ const Home = () => (
     <div className="home__skills">
       <div className="home__skills--content">
         {
-          skillsList.map((skill) => (
-            <div className="skill">
+          skillsList.map((skill, index) => (
+            <div className="skill" key={`skill-${index}`}>
               <div className="skill__item">
                 <div className="skill__item--icon"><img src={skill.icon} /></div>
                 <div className="skill__item--text">
@@ -71,7 +73,7 @@ const Home = () => (
       </div>
     </div>
     <div className="home__tools">
-      
+      <Expertise />
     </div>
   </div>
 );

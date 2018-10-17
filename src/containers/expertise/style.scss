@@ -1,0 +1,5 @@
+@import '../../skins/index.scss';
+
+.expertise {
+  @include flex(row);
+}
