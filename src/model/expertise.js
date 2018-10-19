@@ -77,7 +77,7 @@ const data = [
       color: getRandomColor(),
 		},
     {
-			cat: 'backend', name: 'MongoDB', value: 40,
+			cat: 'database', name: 'MongoDB', value: 40,
 			icon: mongodb,
 			desc: `
 				The de-facto Database solution for JavaScript and Node.js applications. It is a light weight,
@@ -85,7 +85,7 @@ const data = [
 			`,
       color: getRandomColor(),
 		}, {
-			cat: 'backend', name: 'NodeJS', value: 40,
+			cat: 'language', name: 'NodeJS', value: 40,
 			icon: nodejs,
 			desc: `
 				Node.js is a cross-platform JavaScript runtime environment.
@@ -133,7 +133,7 @@ const data = [
       color: getRandomColor(),
 		},
     {
-			cat: 'language', name: 'SASS (SCSS flavor)', value: 50,
+			cat: 'language', name: 'SASS', value: 50,
 			icon: sass,
 			desc: `
 				This is our main CSS preprocessor language helping us lay structured foundation to CSS as well

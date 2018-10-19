@@ -2,4 +2,13 @@
 
 .expertise {
   @include flex(row);
+  @include element('description') {
+    padding: 10px 20px;
+  }
+  @include element('title') {
+    font-size: 2.5em;
+  }
+  @include element('subtitle') {
+    font-size: 2em;
+  }
 }

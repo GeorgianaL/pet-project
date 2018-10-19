@@ -58,7 +58,11 @@
   }
   @include element('skills') {
     padding: 20px 30px;
+    @include flex(row);
+    justify-content: center;
+
     @include modifier('content') {
+      max-width: 1000px;
       border-left: 4px solid setColor('ebony-clay');
     }
 
@@ -88,6 +92,13 @@
         }
       }
     }
+  }
+
+  @include element('tools') {
+    @include flex(row);
+    justify-content: center;
+    padding: 20px 30px;
+    background-color: setColor('porcelain');
   }
 }
 
@@ -139,6 +150,9 @@
           }
         }
       }
+    }
+    @include element('tools') {
+      padding: 20px 10px;
     }
   }
 
