@@ -40,9 +40,14 @@ componentWillMount() {
 
   updateDimensions() {
       const { config } = this.state;
+      let chartWidth;
 
-      const chartWidth = parseInt(window.innerWidth * 0.6, 10)
-
+      if (window.innerWidth <= 690) {
+        chartWidth = parseInt(window.innerWidth, 10);
+      } else {
+        chartWidth = parseInt(window.innerWidth * 0.6, 10);
+      }
+      console.log(window.innerWidth, chartWidth);
       if (chartWidth !== config.svgWidth) {
         this.setState({
           'config': {
@@ -70,7 +75,7 @@ componentWillMount() {
         <div className="expertise">
           <div className="expertise__description">
             <p className="expertise__title">Technologies Stack I use</p>
-            <p  className="expertise__subtitle">Filter them by...</p>
+            <p className="expertise__subtitle">Filter them by...</p>
             <OptionsList
               options={getUniqueProps(data, 'cat')}
               type={listType}

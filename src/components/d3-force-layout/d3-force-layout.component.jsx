@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
-import { isEmpty } from 'lodash';
+import { isEmpty, isEqual } from 'lodash';
 
-import  { getRandomColor } from '../../lib';
+import  { getRandomColor, capitalize } from '../../lib';
+
+import './style.scss';
+
+const addTooltipContent = (tooltip, tooltipContent) => {
+  const htmlContent = `<div class="tooltip">
+    <div class="tooltip__title"><p>${tooltipContent.title} (${capitalize(tooltipContent.subtitle)})</p></div>
+    <div class="tooltip__content"><p>${tooltipContent.content}</p></div>
+  </div>`;
+  tooltip.html(htmlContent);
+}
 
 export class ForceLayout extends Component {
   constructor(props) {
@@ -15,34 +25,34 @@ export class ForceLayout extends Component {
   }
 
   componentDidMount() {
-    this.renderD3();
+    this.renderD3(this.props.data);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.data, nextProps.data)) {
+      this.renderD3(nextProps.data);
+    }
   }
 
   componentDidUpdate() {
-    this.renderD3();
+    this.renderD3(this.props.data);
   }
 
-  renderD3() {
-    const { data, config } = this.props;
+  renderD3(data) {
+    const { config, className } = this.props;
     const node = this.svgNode;
-    const tooltip = d3.select(this.tooltipNode);
-    tooltip
-      .style('position', 'absolute')
-      .style('opacity', 0);
+    const tooltip = d3.select('body')
+      .append('div')
+      .attr('class', `${className}__tooltip`);
 
     const svg = d3.select(node);
 
     const center = {
       'x': config.svgWidth / 2,
-      'y': config.svgHeight / 1.5,
+      'y': config.svgHeight / 1.3,
     };
 
     const strength = 0.01;
-    const format = d3.format(',d');
-
-    svg
-      .style('position', 'relative')
-      .style('background-color', '#eee');
 
     // create and upadte background circles
 		const nodesGroup = svg.select('.circles');
@@ -62,7 +72,7 @@ export class ForceLayout extends Component {
 
     // create and update icons
     const imagesGroup = svg.select('.images');
-    const imagesGroupData = nodesGroup.selectAll('image')
+    const imagesGroupData = imagesGroup.selectAll('image')
       .data(data);
     imagesGroupData
       .enter()
@@ -76,19 +86,25 @@ export class ForceLayout extends Component {
       .attr('xlink:href', d => d.icon)
       .attr('width', d => d.value + d.value / 2)
       .attr('height', d => d.value + d.value / 2);
-    // imagesGroupData.on('mouseover', (d) => {
-    //   tooltip.transition()
-    //       .duration(200)
-    //       .style("opacity", .9);
-    //   tooltip.html(d.name + "<br/>" + d.desc)
-    //     .attr('top', d3.event.pageY)
-    //     .attr('left', d3.event.pageX);
-    //   });
-    // imagesGroupData.on("mouseout", (d) => {
-    //   tooltip.transition()
-    //       .duration(500)
-    //       .style("opacity", 0);
-    // });
+    imagesGroupData.on('mouseover', (d) => {
+      tooltip.transition()
+          .duration(200)
+          .style("opacity", .9);
+      const tooltipContent = {
+        'title': d.name,
+        'subtitle': d.cat,
+        'content': d.desc,
+      };
+      addTooltipContent(tooltip, tooltipContent);
+      tooltip
+        .style('top', `${d3.event.pageY}px`)
+        .style('left', `${d3.event.pageX}px`);
+      });
+    imagesGroupData.on("mouseout", (d) => {
+      tooltip.transition()
+          .duration(500)
+          .style("opacity", 0);
+    });
     imagesGroupData.exit().remove();
 
 		const forceCollide = d3.forceCollide(d => d.r + 1);
@@ -117,8 +133,7 @@ export class ForceLayout extends Component {
   }
 
   render() {
-    const { data, config, className } = this.props;
-    console.log(data);
+    const { config, className } = this.props;
     return (
       <div className={className}>
        <svg
@@ -129,10 +144,6 @@ export class ForceLayout extends Component {
           <g className="circles" />
           <g className="images" />
        </svg>
-       <div
-         className={`${className}__tooltip d3tooltip`}
-         ref={node => this.tooltipNode = node}
-        />
      </div>
     );
   }

@@ -1,0 +1,55 @@
+@import '../../skins/index.scss';
+
+.forcelayout {
+  position: relative;
+
+  @include element('tooltip') {
+    opacity: 0;
+    position: absolute;
+
+    max-width: 250px;
+    background-color: setColor('white');
+    transform: translate(-125px, 20px);
+  }
+
+  .circles {
+    circle {
+      cursor: pointer;
+    }
+  }
+  .images {
+    image {
+      cursor: pointer;
+    }
+  }
+}
+
+.tooltip {
+  padding: 10px;
+
+  @include element('title') {
+    text-align: center;
+    font-size: 1.5em;
+  }
+  @include element('content') {
+    font-size: 1.3em;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .forcelayout {
+    @include element('tooltip') {
+      width: 350px;
+    }
+  }
+
+  .tooltip {
+    @include element('title') {
+      font-size: 2em;
+    }
+    @include element('content') {
+      font-size: 1.8em;
+    }
+  }
+}

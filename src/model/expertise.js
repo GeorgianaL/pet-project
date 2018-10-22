@@ -70,9 +70,9 @@ const data = [
 			cat: 'library', name: 'ReactJS', value: 40,
 			icon: react,
 			desc: `
-				React (sometimes written React.js or ReactJS) is an open-source JavaScript framework maintained by Facebook for building user interfaces.
+				React (sometimes written React.js or ReactJS) is an open-source JavaScript library maintained by Facebook for building user interfaces.
 				React processes only user interface in applications and can be used in combination with other JavaScript libraries
-				or frameworks such as Redux, Flux, Backbone...
+				or frameworks such as Redux or Flux.
 			`,
       color: getRandomColor(),
 		},
@@ -90,8 +90,7 @@ const data = [
 			desc: `
 				Node.js is a cross-platform JavaScript runtime environment.
 				Node.js allows creation of high performance and high concurrency websites with smaller footprint compared to
-				other server-side solution. Node.js ecosystem is growing very fast and is trusted by a lot of big companies who
-				are adopting it to enhance current products as well as for new ones.
+				other server-side solution.
 			`,
       color: getRandomColor(),
 		},
@@ -117,8 +116,7 @@ const data = [
 			icon: javascript,
 			desc: `
 				JavaScript is the heart of modern Web front end development and essential element of any Single Page
-				Applications. In Nau, we invest a good deal in training developers to have good control of this universal language
-				and now caplable of developing full stack websites with only JavaScript.
+				Applications.
 			`,
       color: getRandomColor(),
 		},
@@ -142,7 +140,7 @@ const data = [
       color: getRandomColor(),
 		},
     {
-			cat: 'workflow', name: 'Gitflow Workflow', value: 30,
+			cat: 'workflow', name: 'Git', value: 30,
 			icon: github,
 			desc: `
 				Our code version control tool is Git, and Gitflow is one of its workflow standard which

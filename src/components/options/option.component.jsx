@@ -6,11 +6,12 @@ const Option = (props) => {
   const checked = props.type === 'checkbox' ?
     props.selection.includes(props.label) :
     props.selection === props.label;
+
   return (
-    <div onClick={props.selectOption}>
-      <input type={props.type} checked={checked}/>
-      {capitalize(props.label)}
-    </div>
+    <li className="option" onClick={props.selectOption}>
+      <input type={props.type} checked={checked} />
+      <span className="checkmark">{capitalize(props.label)}</span>
+    </li>
   );
 };
 

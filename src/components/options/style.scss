@@ -1,0 +1,31 @@
+@import '../../skins/index.scss';
+
+.options {
+  font-size: 1.5em;
+  list-style-type: none;
+
+  .option {
+    padding: 10px 5px;
+    @include flex(row);
+    align-items: center;
+
+    input {
+      height: 25px;
+      width: 25px;
+      background-color: setColor('white');
+      border-radius: 50%;
+
+      &:checked {
+        background-color: #2196F3;
+      }
+    }
+
+    input::checked {
+      background-color: #2196F3;
+    }
+
+    span {
+      padding: 0px 10px;
+    }
+  }
+}

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import Option from './option.component.jsx';
 
+import './style.scss';
+
 export class OptionsList extends Component {
   constructor(props) {
     super(props);
@@ -51,10 +53,11 @@ export class OptionsList extends Component {
   render() {
     const { type, options } = this.props;
     return (
-      <ul>
+      <ul className="options">
         {
           options.map((option) => (
             <Option
+              key={option}
               label={option}
               type={type}
               selectOption={() => this.selectOption(option)}
