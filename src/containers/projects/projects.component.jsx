@@ -7,34 +7,69 @@ import { getUsersLocation } from '../../model/selectors/location.selectors';
 import { getUsersByCreditCardType, getCreditCardTypesPercentages } from '../../model/selectors/credit-card-type.selectors';
 
 import { TIMELINE, WORLDMAP, CHORD, PROGRESS } from '../../lib/charts/chartTypes';
+import { ROW, COLUMN } from '../../lib/charts/boxTypes';
 
-class D3Projects extends Component {
+class Projects extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      'boxType': ROW,
+    };
+
+    this.updateDimensions = this.updateDimensions.bind(this);
   }
 
+  componentWillMount() {
+     window.addEventListener('resize', this.updateDimensions);
+   }
+
+   componentDidMount() {
+     this.updateDimensions();
+   }
+   componentWillUnmount() {
+      window.removeEventListener('resize', this.updateDimensions);
+    }
+
+    updateDimensions() {
+      const { boxType } = this.state;
+      let currentBoxType;
+
+      if (window.innerWidth <= 800) {
+        currentBoxType = COLUMN;
+      } else {
+        currentBoxType = ROW;
+      }
+
+      if (currentBoxType !== boxType) {
+        this.setState({
+          'boxType': currentBoxType,
+        });
+      }
+    }
+
   render() {
-    console.log(this.props.chordData);
+    const { boxType } = this.state;
+
     return (
-      <div>
-        <h1>D3 Projects</h1>
+      <div className="projects">
         <ChartBoxContainer
-          boxType="row"
+          boxType={boxType}
           chart={TIMELINE}
           data={this.props.timelineData}
         />
         <ChartBoxContainer
-          boxType="row"
+          boxType={boxType}
           chart={WORLDMAP}
           data={this.props.worldMapData}
         />
         <ChartBoxContainer
-          boxType="row"
+          boxType={boxType}
           chart={CHORD}
           data={{ 'entities': this.props.chordData }}
         />
         <ChartBoxContainer
-          boxType="row"
+          boxType={boxType}
           chart={PROGRESS}
           data={this.props.progressData}
         />
@@ -51,4 +86,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(D3Projects);
+export default connect(mapStateToProps)(Projects);

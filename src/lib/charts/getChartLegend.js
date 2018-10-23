@@ -2,6 +2,7 @@ import {
   TIMELINE,
   WORLDMAP,
   CHORD,
+  PROGRESS,
 } from './chartTypes.js';
 
 import { creditCardIcon } from './';
@@ -27,6 +28,12 @@ const getChartLegend = (type, data) => {
           'category': type.credit_card_type,
           'icon': creditCardIcon[type.credit_card_type],
           'label': `${(type.male * 100) / total}% Male ${(type.female * 100) / total}% Female`,
+        }], []);
+    case PROGRESS:
+      return data.reduce((acc, type) => [...acc, {
+          'category': type.credit_card_type,
+          'icon': creditCardIcon[type.credit_card_type],
+          'label': `${type.percent}%`,
         }], []);
     default:
       return [];

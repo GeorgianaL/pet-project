@@ -12,13 +12,8 @@ const Navigation = () => (
         </NavLink>
       </li>
       <li className="navigation__item">
-        <NavLink className="navigation__item--link" exact to='/about'>
-          About
-        </NavLink>
-      </li>
-      <li className="navigation__item">
-        <NavLink className="navigation__item--link" exact to='/d3projects'>
-          D3Projects
+        <NavLink className="navigation__item--link" exact to='/projects'>
+          Projects
         </NavLink>
       </li>
     </ul>

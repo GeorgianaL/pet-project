@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isEqual } from 'lodash';
 
 import ChartBox from '../../components/chart-box';
 
@@ -18,34 +19,47 @@ class ChartBoxContainer extends Component {
     super(...args);
     this.state = {
       'config': {
-        'svgWidth': parseInt(window.innerWidth, 10),
+        'svgWidth': parseInt(window.innerWidth, 10) - 3 * basicConfig.marginLeft,
       },
     };
 
     this.updateDimensions = this.updateDimensions.bind(this);
   }
 
-componentWillMount() {
-   window.addEventListener('resize', this.updateDimensions);
- }
+  componentWillMount() {
+     window.addEventListener('resize', this.updateDimensions);
+   }
 
- componentDidMount() {
-   this.updateDimensions();
- }
+   componentDidMount() {
+     this.updateDimensions();
+   }
 
- componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
-  }
+   shouldComponentUpdate(nextProps, nextState) {
+     if (this.props.boxType !== nextProps.boxType ||
+     !isEqual(this.state.config, nextState.config)) {
+       return true;
+     }
+     return false;
+   }
+
+   componentDidUpdate() {
+     this.updateDimensions();
+   }
+
+   componentWillUnmount() {
+      window.removeEventListener('resize', this.updateDimensions);
+    }
 
   updateDimensions() {
       const { config } = this.state;
       const { boxType } = this.props;
 
       let fullWidth = 0;
+
       if (boxType === COLUMN) {
-        fullWidth = parseInt(window.innerWidth, 10);
+        fullWidth = parseInt(window.innerWidth, 10) - 3 * basicConfig.marginLeft;
       } else {
-        fullWidth = parseInt(window.innerWidth * 0.7, 10);
+        fullWidth = parseInt(window.innerWidth * 0.7, 10) - 3 * basicConfig.marginLeft;
       }
 
       if (fullWidth !== config.svgWidth) {

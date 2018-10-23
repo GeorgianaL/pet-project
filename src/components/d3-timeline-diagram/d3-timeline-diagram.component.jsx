@@ -1,10 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import * as moment from 'moment';
+import { isEqual } from 'lodash';
 
 import { DATE } from '../../model/selectors/constants';
 import { getX, getY } from '../../lib/d3util';
+import { createTooltipNode, deleteTooltip } from '../../lib/charts';
 
 import './d3-timeline-diagram.scss';
 
@@ -32,7 +34,7 @@ const deleteSvg = (className) => {
   d3.selectAll(`.${className}__dashedLineGroup`).remove();
 };
 
-export class TimelineDiagram extends PureComponent {
+export class TimelineDiagram extends Component {
   constructor(props) {
     super(props);
 
@@ -43,11 +45,20 @@ export class TimelineDiagram extends PureComponent {
   componentDidMount() {
     deleteSvg(this.props.className);
     this.renderD3();
+    createTooltipNode(this.props.className);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(nextProps.config, this.props.config);
   }
 
   componentDidUpdate() {
     deleteSvg(this.props.className);
     this.renderD3();
+  }
+
+  componentWillUnmount() {
+    deleteTooltip(this.props.className);
   }
 
   /**
@@ -129,6 +140,7 @@ export class TimelineDiagram extends PureComponent {
   const pointsGroup = svg.select(`.${className}__points`);
   const pointsGroupData = pointsGroup.selectAll(`.point.${key}`)
      .data(data);
+  const tooltip = d3.select(`.${className}__tooltip`);
 
   pointsGroupData.enter()
     .append('circle')
@@ -136,7 +148,23 @@ export class TimelineDiagram extends PureComponent {
     .attr('r', 5)
     .attr('fill', decor.colors[key])
     .attr('cx', d => x(d.date))
-    .attr('cy', d => y(d[key]));
+    .attr('cy', d => y(d[key]))
+    .on('mouseover', (d) => {
+      tooltip.transition()
+          .duration(200)
+          .style("opacity", .9);
+      tooltip.html(`<div class="tooltip">
+          <div class="tooltip__title"><p>${d[key]}</p></div>
+        </div>`);
+      tooltip
+        .style('top', `${d3.event.pageY}px`)
+        .style('left', `${d3.event.pageX}px`);
+    })
+    .on('mouseout', (d) => {
+      tooltip.transition()
+          .duration(500)
+          .style("opacity", 0);
+    });
 
   pointsGroupData
     .attr('fill', decor.colors[key])

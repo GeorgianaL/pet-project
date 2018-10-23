@@ -24,7 +24,6 @@ const getChart = (props) => {
           case CHORD:
             return <Chord {...props} />;
           case PROGRESS:
-          console.log(props);
             return <ProgressChartList {...props} />
           default:
             return <p>No chart</p>;

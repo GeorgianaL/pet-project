@@ -9,6 +9,12 @@
     align-items: center;
     padding: 10px;
     width: 100%;
+    font-size: 1.5em;
+
+    p {
+      margin: 0;
+      padding: 5px;
+    }
 
     @include modifier('circle') {
       width: 20px;
@@ -18,6 +24,18 @@
     @include modifier('img') {
       width: 35px;
       height: 35px;
+    }
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .legend {
+    @include element('list') {
+      @include flex(column);
+    }
+    @include element('item') {
+      padding: 4px;
+      font-size: 2em;
     }
   }
 }

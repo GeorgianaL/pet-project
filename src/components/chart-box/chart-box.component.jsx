@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Legend from '../chart-legend';
+import { isEqual } from 'lodash';
 
 import { getChart, getChartDescription, getChartLegend } from '../../lib/charts';
 import './chart-box.scss';
@@ -13,23 +14,37 @@ import './chart-box.scss';
   }
 */
 
-const ChartBox = props => (
-  <div className={`chart-box chart-box--${props.boxType}`}>
-    <div className="chart-box__content">
-      {getChart(props)}
-      <div className="chart-box--legend">
-        <Legend data={getChartLegend(props.chart, props.data)} chart={props.chart} />
+class ChartBox extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    if (this.props.boxType !== nextProps.boxType ||
+    !isEqual(this.props.config, nextProps.config)) {
+      return true;
+    }
+    return false;
+  }
+
+  render() {
+    const { boxType, chart, data } = this.props;
+    return (
+      <div className={`chart-box chart-box--${boxType}`}>
+        <div className="chart-box__content">
+          {getChart(this.props)}
+          <div className="chart-box--legend">
+            <Legend data={getChartLegend(chart, data)} chart={chart} />
+          </div>
+        </div>
+        <div className="chart-box__main">
+          <div className="chart-box--title">
+            <p>{chart}</p>
+          </div>
+          <div className="chart-box--description">
+            {getChartDescription(chart)}
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="chart-box__main">
-      <div className="chart-box--title">
-        <p>{props.chart}</p>
-      </div>
-      <div className="chart-box--description">
-        {getChartDescription(props.chart)}
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 export default ChartBox;

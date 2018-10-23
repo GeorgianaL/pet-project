@@ -2,7 +2,9 @@
 
 .progresschart {
   @include element('list') {
-    @include flex(row);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
   }
 }
 
@@ -16,7 +18,7 @@
       color: setColor('seance');
       display: flex;
       flex-direction: column;
-      font-size: setFontSizeNew('h3','big');
+      font-size: 1.7em;
       font-weight: setFontWeight('lighter');
       height: 100%;
       justify-content: center;

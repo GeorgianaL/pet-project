@@ -8,7 +8,7 @@ const config = {
   'height': 100,
   'width': 100,
   'chordRadius': 50,
-  'chordStroke': 3,
+  'chordStroke': 4,
   'duration': 750,
   'iconWidth': 25,
   'iconHeight': 16,

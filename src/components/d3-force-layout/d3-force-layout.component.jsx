@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import { isEmpty, isEqual } from 'lodash';
 
 import  { getRandomColor, capitalize } from '../../lib';
+import { createTooltipNode, deleteTooltip } from '../../lib/charts';
 
 import './style.scss';
 
@@ -20,12 +21,12 @@ export class ForceLayout extends Component {
     super(props);
 
     this.svgNode = null;
-    this.tooltipNode = null;
     this.renderD3 = this.renderD3.bind(this);
   }
 
   componentDidMount() {
     this.renderD3(this.props.data);
+    createTooltipNode(this.props.className);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,12 +39,15 @@ export class ForceLayout extends Component {
     this.renderD3(this.props.data);
   }
 
+  componentWillUnmount() {
+    deleteTooltip(this.props.className);
+  }
+
   renderD3(data) {
     const { config, className } = this.props;
     const node = this.svgNode;
-    const tooltip = d3.select('body')
-      .append('div')
-      .attr('class', `${className}__tooltip`);
+
+    const tooltip = d3.select(`.${className}__tooltip`);
 
     const svg = d3.select(node);
 

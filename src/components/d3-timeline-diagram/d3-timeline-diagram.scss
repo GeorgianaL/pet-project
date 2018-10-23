@@ -30,7 +30,7 @@
         fill: setColor('bright-green');
       }
     }
-  
+
       path {
         stroke-dasharray: 3, 3;
         stroke: setColor('light-grey');
@@ -49,6 +49,15 @@
       stroke: setColor('light-grey');
     }
   }
+
+  @include element('tooltip') {
+    opacity: 0;
+    position: absolute;
+
+    background-color: setColor('white');
+    border-radius: 3px;
+    transform: translate(-50%, 20px);
+  }
 }
 
 
@@ -59,4 +68,12 @@ g {
     .area {
         fill-opacity: 0.2;
     }
+}
+
+.tooltip {
+  @include element('title') {
+    p {
+      margin: 0;
+    }
+  }
 }
