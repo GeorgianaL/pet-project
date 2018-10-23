@@ -16,6 +16,7 @@ class Expertise extends Component {
       'config': {
         'svgWidth': parseInt(window.innerWidth, 10),
         'svgHeight': 500,
+        'margins': 20,
       },
       'tools': [],
     };
@@ -43,11 +44,11 @@ componentWillMount() {
       let chartWidth;
 
       if (window.innerWidth <= 690) {
-        chartWidth = parseInt(window.innerWidth, 10);
+        chartWidth = parseInt(window.innerWidth, 10) - config.margins;
       } else {
         chartWidth = parseInt(window.innerWidth * 0.6, 10);
       }
-      console.log(window.innerWidth, chartWidth);
+
       if (chartWidth !== config.svgWidth) {
         this.setState({
           'config': {

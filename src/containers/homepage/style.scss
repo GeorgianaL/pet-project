@@ -100,6 +100,21 @@
     padding: 20px 30px;
     background-color: setColor('porcelain');
   }
+
+  @include element('footer') {
+    height: 300px;
+    background-color: setColor('ebony-clay');
+
+    @include modifier('contact') {
+      padding: 20px 60px;
+    }
+
+    @include modifier('contact-title') {
+      margin: 0;
+      font-size: 2em;
+      color: setColor('white');
+    }
+  }
 }
 
 // screen bigger than on a mobile
@@ -153,6 +168,11 @@
     }
     @include element('tools') {
       padding: 20px 10px;
+    }
+    @include element('footer') {
+      @include modifier('contact') {
+        padding: 20px 10px;
+      }
     }
   }
 

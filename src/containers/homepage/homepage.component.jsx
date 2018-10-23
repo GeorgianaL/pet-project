@@ -75,6 +75,11 @@ const Home = () => (
     <div className="home__tools">
       <Expertise />
     </div>
+    <div className="home__footer">
+      <div className="home__footer--contact">
+        <p className="home__footer--contact-title">Contact</p>
+      </div>
+    </div>
   </div>
 );
 

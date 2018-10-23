@@ -86,28 +86,32 @@ export class ForceLayout extends Component {
       .attr('xlink:href', d => d.icon)
       .attr('width', d => d.value + d.value / 2)
       .attr('height', d => d.value + d.value / 2);
-    imagesGroupData.on('mouseover', (d) => {
-      tooltip.transition()
-          .duration(200)
-          .style("opacity", .9);
-      const tooltipContent = {
-        'title': d.name,
-        'subtitle': d.cat,
-        'content': d.desc,
-      };
-      addTooltipContent(tooltip, tooltipContent);
-      tooltip
-        .style('top', `${d3.event.pageY}px`)
-        .style('left', `${d3.event.pageX}px`);
-      });
-    imagesGroupData.on("mouseout", (d) => {
-      tooltip.transition()
-          .duration(500)
-          .style("opacity", 0);
-    });
     imagesGroupData.exit().remove();
 
-		const forceCollide = d3.forceCollide(d => d.r + 1);
+    // trigger tooltip when hovering nodes or images
+    [imagesGroupData, nodesGroupData].forEach((element) => {
+      element.on('mouseover', (d) => {
+        tooltip.transition()
+            .duration(200)
+            .style("opacity", .9);
+        const tooltipContent = {
+          'title': d.name,
+          'subtitle': d.cat,
+          'content': d.desc,
+        };
+        addTooltipContent(tooltip, tooltipContent);
+        tooltip
+          .style('top', `${d3.event.pageY}px`)
+          .style('left', `${d3.event.pageX}px`);
+        });
+        element.on("mouseout", (d) => {
+          tooltip.transition()
+              .duration(500)
+              .style("opacity", 0);
+        });
+    });
+
+		const forceCollide = d3.forceCollide(d => d.value + 1);
     // use the force to create the graph
     const simulation = d3.forceSimulation()
     	.force('charge', d3.forceManyBody())
@@ -118,7 +122,11 @@ export class ForceLayout extends Component {
   // add x and y coordinates for circles and icons
     const ticked = () => {
       nodesGroupData
-        .attr('transform', d => `translate(${d.x},${d.y})`)
+        .attr('transform', (d) => {
+          d.x = Math.max(d.value, Math.min(config.svgWidth - d.value, d.x));
+          d.y = Math.max(d.value, Math.min(config.svgHeight - d.value, d.y));
+          return `translate(${d.x},${d.y})`;
+        })
         .select('circle')
           .attr('r', d => d.value);
       imagesGroupData.attr('transform', d =>
