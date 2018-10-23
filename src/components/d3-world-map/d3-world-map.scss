@@ -18,4 +18,22 @@
         stroke-width: 1px;
         fill: none;
     }
+
+    .points {
+      circle {
+        cursor: pointer;
+      }
+    }
+
+    @include element('tooltip') {
+      opacity: 0;
+      position: absolute;
+
+      background-color: setColor('white');
+      transform: translate(-50%, 20px);
+
+      .tooltip {
+        font-size: 1.4em;
+      }
+    }
 }

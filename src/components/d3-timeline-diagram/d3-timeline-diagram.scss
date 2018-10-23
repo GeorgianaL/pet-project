@@ -3,7 +3,7 @@
 .d3-timeline-graph {
   position: relative;
 
-  &__xAxis {
+  @include element('xAxis') {
     path {
       stroke: transparent;
     }
@@ -17,7 +17,7 @@
     }
   }
 
-  &__yAxis {
+  @include element('yAxis') {
     text {
       fill: setColor('light-grey');
       font-weight: setFontWeight('normal');
@@ -37,16 +37,22 @@
       }
   }
 
-  &__lines {
+  @include element('lines') {
     path {
       fill: none;
     }
   }
 
-  &__dashedLineGroup {
+  @include element('dashedLineGroup') {
     line {
       stroke-dasharray: 3, 3;
       stroke: setColor('light-grey');
+    }
+  }
+
+  @include element('points') {
+    circle {
+      cursor: pointer;
     }
   }
 

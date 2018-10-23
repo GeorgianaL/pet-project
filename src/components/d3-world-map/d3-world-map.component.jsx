@@ -7,6 +7,7 @@ import { isEmpty } from 'lodash';
 
 import mapData from './world-topo.json';
 import { MALE, FEMALE } from '../../model/selectors/constants';
+import { createTooltipNode, deleteTooltip } from '../../lib/charts';
 
 import './d3-world-map.scss';
 
@@ -69,6 +70,7 @@ export class WorldMap extends Component {
   componentDidMount() {
     if (!isEmpty(mapData)) {
       this.renderD3(mapData);
+      createTooltipNode(this.props.className);
     }
   }
 
@@ -76,6 +78,10 @@ export class WorldMap extends Component {
     if (!isEmpty(mapData)) {
       this.renderD3(mapData);
     }
+  }
+
+  componentWillUnmount() {
+    deleteTooltip(this.props.className);
   }
 
   renderD3(world) {
@@ -128,20 +134,33 @@ export class WorldMap extends Component {
       .attr('d', path);
     contours.exit().remove();
 
+    const tooltip = d3.select(`.${className}__tooltip`);
+
     // add points for all nodes
     const pointsGroupData = points.selectAll('circle')
       .data(nodes);
-
-    // const tooltip = d3.select(this.container)
-    //   .append('div')
-    //   .attr('class', 'worldMap__tooltip popper-wrap')
-    //   .style('opacity', 0);
 
     pointsGroupData.enter()
       .append('circle')
       .attr('transform', d => `translate(${projection([d.longitude, d.latitude])})`)
       .attr('r', 2)
       .style('fill', d => d.gender === MALE ? decor.colors.male : decor.colors.female);
+    pointsGroupData.on('mouseover', (d) => {
+        tooltip.transition()
+            .duration(200)
+            .style("opacity", .9);
+        tooltip.html(`<div class="tooltip">
+          <p>${d.country} - ${d.city}</p>
+        </div>`);
+        tooltip
+          .style('top', `${d3.event.pageY}px`)
+          .style('left', `${d3.event.pageX}px`);
+        });
+    pointsGroupData.on("mouseout", (d) => {
+          tooltip.transition()
+              .duration(500)
+              .style("opacity", 0);
+        });
 
     pointsGroupData
       .attr('transform', d => `translate(${projection([d.longitude, d.latitude])})`)
