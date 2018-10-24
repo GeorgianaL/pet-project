@@ -17,17 +17,17 @@ import './style.scss';
 const skillsList = [
   {
     name: 'communication',
-    description: 'I realize the importance of good communication. I use tools like Slack to make sure we’re always on the same page.',
+    description: "I'm experienced with working in an agile environment, so I realize the importance of good communication. I use tools like Slack to make sure we’re always on the same page.",
     icon: communication,
   },
   {
     name: 'design',
-    description: "I'm not a graphic designer, but I have an eye for good design. I'm comfortable using Photoshop, Illustrator and Sketch and can take designs from mock-up to implementation.",
+    description: "I'm not a graphic designer, but I have an eye for good design. I'm comfortable using Figma and can take designs from mock-up to implementation.",
     icon: design,
   },
   {
     name: 'development',
-    description: 'I have a first-class degree in computer science and recognize the importance of applying proper software development techniques to the web.',
+    description: "I have a first-class degree in computer science and recognize the importance of applying proper software development techniques to the web. I have high attention to detail and I'm always focused on quality",
     icon: web,
   },
 ];
@@ -74,11 +74,6 @@ const Home = () => (
     </div>
     <div className="home__tools">
       <Expertise />
-    </div>
-    <div className="home__footer">
-      <div className="home__footer--contact">
-        <p className="home__footer--contact-title">Contact</p>
-      </div>
     </div>
   </div>
 );

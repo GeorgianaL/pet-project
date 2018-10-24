@@ -1,0 +1,33 @@
+@import '../../skins/index.scss';
+
+.footer {
+  background-color: setColor('ebony-clay');
+  @include element('contact') {
+    padding: 20px 60px;
+    font-size: 1.8em;
+
+    @include modifier('title') {
+      color: setColor('white');
+    }
+    @include modifier('main') {
+      color: setColor('viking');
+      font-size: 0.8em;
+      p {
+        margin: 0;
+        padding: 4px;
+      }
+
+      .social-media {
+        @include flex(row);
+        align-items: center;
+        font-size: 1.4em;
+
+        img {
+          width: 32px;
+          height: 32px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
