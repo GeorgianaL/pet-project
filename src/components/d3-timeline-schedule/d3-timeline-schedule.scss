@@ -1,0 +1,43 @@
+@import '../../skins/index.scss';
+
+.d3-timeline-schedule {
+  position: relative;
+
+  @include element('xAxis') {
+    path {
+      stroke: setColor('light-grey');
+    }
+    text {
+      fill: setColor('light-grey');
+    }
+    .tick {
+      line {
+          stroke: transparent;
+      }
+
+      circle {
+        fill: white;
+        stroke-width: 2;
+        stroke: grey;
+      }
+    }
+  }
+
+  @include element('chart') {
+    rect {
+      height: 22px;
+    }
+
+    text {
+      fill: white;
+      font-weight: 700;
+    }
+  }
+
+  @include element('dashedLineGroup') {
+    line {
+      stroke-dasharray: 3, 3;
+      stroke: setColor('light-grey');
+    }
+  }
+}

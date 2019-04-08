@@ -4,3 +4,4 @@ export const SPIDERGRAPH = 'SpiderGraph';
 export const WORLDMAP = 'WorldMap';
 export const PARALLELCOORDINATESMAP = 'ParallelCoordinatesMap';
 export const PROGRESS = 'Progress-Donut-Chart';
+export const SCHEDULE = 'Schedule-Diagram';

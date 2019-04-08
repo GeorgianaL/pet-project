@@ -14,11 +14,13 @@ export const getX = (svg, className, config, startDate, endDate) => {
   const width = config.svgWidth - config.marginLeft;
 
   const x = scaleTime(width, startDate, endDate);
+
   svg.select(`.${className}__xAxis`)
     .attr('transform', `translate(${config.marginLeft}, 0)`)
     .call(d3.axisTop(x)
       .ticks(7)
       .tickFormat(d3.timeFormat(timeFormat(startDate, endDate))));
+
   d3.selectAll('.xAxis > g')
     .attr('class', 'tick xAxis__tick');
   return x;

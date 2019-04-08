@@ -6,8 +6,10 @@ import { getUsersByGenderAndBirth } from '../../model/selectors/genders.selector
 import { getUsersLocation } from '../../model/selectors/location.selectors';
 import { getUsersByCreditCardType, getCreditCardTypesPercentages } from '../../model/selectors/credit-card-type.selectors';
 
-import { TIMELINE, WORLDMAP, CHORD, PROGRESS } from '../../lib/charts/chartTypes';
+import { TIMELINE, WORLDMAP, CHORD, PROGRESS, SCHEDULE } from '../../lib/charts/chartTypes';
 import { ROW, COLUMN } from '../../lib/charts/boxTypes';
+
+import { scheduleData } from '../../model/scheduleData';
 
 class Projects extends Component {
   constructor(props) {
@@ -72,6 +74,11 @@ class Projects extends Component {
           boxType={boxType}
           chart={PROGRESS}
           data={this.props.progressData}
+        />
+        <ChartBoxContainer
+          boxType={boxType}
+          chart={SCHEDULE}
+          data={scheduleData}
         />
       </div>
     );

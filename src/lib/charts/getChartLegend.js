@@ -3,6 +3,7 @@ import {
   WORLDMAP,
   CHORD,
   PROGRESS,
+  SCHEDULE
 } from './chartTypes.js';
 
 import { creditCardIcon } from './';
@@ -35,6 +36,26 @@ const getChartLegend = (type, data) => {
           'icon': creditCardIcon[type.credit_card_type],
           'label': `${type.percent}%`,
         }], []);
+    case SCHEDULE:
+      return [
+        {
+          label: 'Active Jobs',
+          category: 'active',
+          color: '#5EA214',
+        }, {
+          label: 'Pending Jobs',
+          category: 'pending',
+          color: '#FB5C41',
+        }, {
+          label: 'Opportunities',
+          category: 'opportunity',
+          color: '#265CBF',
+        }, {
+          label: 'Unplanned',
+          category: 'unplanned',
+          color: '#9B9B9B',
+        }
+      ]
     default:
       return [];
   }
