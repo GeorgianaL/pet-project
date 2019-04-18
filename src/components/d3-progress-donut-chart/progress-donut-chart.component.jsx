@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
@@ -29,7 +29,7 @@ const calculateArcData = (percent) => {
     }];
 };
 
-class ProgressDonutChart extends Component {
+class ProgressDonutChart extends React.PureComponent {
   constructor(...args) {
     super(...args);
 

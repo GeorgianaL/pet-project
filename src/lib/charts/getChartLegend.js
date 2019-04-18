@@ -7,7 +7,6 @@ import {
 } from './chartTypes.js';
 
 import { creditCardIcon } from './';
-import { capitalize } from '../';
 
 const getChartLegend = (type, data) => {
   switch (type) {

@@ -4,6 +4,7 @@ import '../../main-style-file.scss';
 import Main from '../main';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
+import { whyDidYouUpdate } from "why-did-you-update";
 
 const App = () => (
   <div>
@@ -13,4 +14,5 @@ const App = () => (
   </div>
 );
 
-export default App;
+whyDidYouUpdate(React);
+export default whyDidYouUpdate(App);
