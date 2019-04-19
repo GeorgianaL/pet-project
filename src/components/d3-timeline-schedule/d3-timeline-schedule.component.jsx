@@ -86,39 +86,15 @@ export class TimelineSchedule extends Component {
   addDashedLineDelimiters(svg, height, scale) {
      const { className } = this.props;
 
-     let tickWidth = 0;
-
-     d3.selectAll(`.${className}__xAxis > g > text`)
-       .nodes()
-       .map((t) => {
-         if (t instanceof SVGElement) {
-           tickWidth = t.getBoundingClientRect().width;
-         }
-         return t.innerHTML;
-       });
-
      let defaultTicksPosition = [];
 
      d3.selectAll(`.${className}__xAxis > g > text`)
        .each(d => defaultTicksPosition = [...defaultTicksPosition, scale(d)]);
 
-     let delimiters = [];
-
-     if (defaultTicksPosition.length > 1) {
-       defaultTicksPosition.forEach((tick, i) => {
-         if (defaultTicksPosition[i] >= 0 && defaultTicksPosition[i + 1]) {
-           delimiters = [
-             ...delimiters,
-             defaultTicksPosition[i]
-           ];
-         }
-       });
-     }
-
      const dashedLines = svg.append('g')
        .attr('class', `${className}__dashedLineGroup`);
 
-     delimiters.forEach((position) => {
+     defaultTicksPosition.forEach((position) => {
        addDashedLine(dashedLines, height - 45, position);
      });
    }

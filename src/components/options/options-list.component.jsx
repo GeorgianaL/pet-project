@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import { isEqual } from "lodash";
 
-import Option from './option.component.jsx';
+import Option from "./option.component.jsx";
 
-import './style.scss';
+import "./style.scss";
 
-export class OptionsList extends Component {
+export class OptionsList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      'selection': '',
+      selection: ""
     };
 
     this.selectOption = this.selectOption.bind(this);
@@ -20,9 +21,16 @@ export class OptionsList extends Component {
     const { type } = this.props;
     if (type === "checkbox") {
       this.setState({
-        'selection': [],
+        selection: []
       });
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { type, selection } = this.props;
+    return (
+      !isEqual(selection, nextProps.selection) || !isEqual(type, nextProps.type)
+    );
   }
 
   selectOption(option) {
@@ -35,18 +43,24 @@ export class OptionsList extends Component {
       } else {
         newSelection.splice(newSelection.indexOf(option), 1);
       }
-      this.setState({
-        'selection': newSelection,
-      }, () => {
-        this.props.updateSelectedOptions(newSelection);
-      });
+      this.setState(
+        {
+          selection: newSelection
+        },
+        () => {
+          this.props.updateSelectedOptions(newSelection);
+        }
+      );
     } else {
-      const newSelectedOption = selection !== option ? option : ''
-      this.setState({
-        'selection': newSelectedOption,
-      }, () => {
-        this.props.updateSelectedOptions(newSelectedOption)
-      });
+      const newSelectedOption = selection !== option ? option : "";
+      this.setState(
+        {
+          selection: newSelectedOption
+        },
+        () => {
+          this.props.updateSelectedOptions(newSelectedOption);
+        }
+      );
     }
   }
 
@@ -54,30 +68,28 @@ export class OptionsList extends Component {
     const { type, options } = this.props;
     return (
       <ul className="options">
-        {
-          options.map((option) => (
-            <Option
-              key={option}
-              label={option}
-              type={type}
-              selectOption={() => this.selectOption(option)}
-              selection={this.state.selection}
-            />
-          ))
-        }
+        {options.map(option => (
+          <Option
+            key={option}
+            label={option}
+            type={type}
+            selectOption={() => this.selectOption(option)}
+            selection={this.state.selection}
+          />
+        ))}
       </ul>
     );
   }
 }
 
-OptionsList.displayName = 'OptionsList';
+OptionsList.displayName = "OptionsList";
 OptionsList.propTypes = {
-  'options': PropTypes.array,
-  'type': PropTypes.string,
+  options: PropTypes.array,
+  type: PropTypes.string
 };
 OptionsList.defaultProps = {
-  'options': [],
-  'type': 'radio',
+  options: [],
+  type: "radio"
 };
 
 export default OptionsList;
